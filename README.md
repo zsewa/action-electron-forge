@@ -1,3 +1,3 @@
-# `electron-forge/distributable-action`
+# `zsewa/action-electron-forge`
 
-GitHub Action for creating distributables for Electron applications with Electron Forge.
+GitHub Action for publishing Electron applications with Electron Forge.
