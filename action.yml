@@ -46,8 +46,6 @@ runs:
       run: $GITHUB_ACTION_PATH/scripts/platform-dependencies.sh
       env:
         TARGET_MAKER: ${{ inputs.target-maker }}
-    - name: list files
-      run: cd ${{ inputs.folder }} && ls -la
     - name: Install dependencies
       shell: bash
       run: cd ${{ inputs.folder }} && npm ci
