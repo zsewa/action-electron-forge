@@ -17,10 +17,10 @@ inputs:
     required: false
   target-maker:
     description: 'The target Electron Forge maker module which generates the distributable artifacts. For example, @electron-forge/maker-deb'
-    required: true
+    required: false
   target-platform:
     description: 'The target platform for the Electron app distributable.'
-    required: true
+    required: false
   windows-cert-filename:
     description: 'Path to the PFX certificate generated from the windows-cert-p12 input. Provided to a JavaScript-based Forge config as `process.env.WINDOWS_CERT_FILENAME`.'
     default: 'windows-certificate.pfx'
@@ -60,13 +60,12 @@ runs:
       env:
         WINDOWS_CERT_FILENAME: ${{ inputs.windows-cert-filename }}
         WINDOWS_CERT_P12: ${{ inputs.windows-cert-p12 }}
-    - name: Create app distributable
+    - name: Publish app
       shell: bash
-      run: $GITHUB_ACTION_PATH/scripts/make.sh
+      run: $GITHUB_ACTION_PATH/scripts/publish.sh
       env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NODE_INSTALLER: ${{ inputs.node-installer }}
-        TARGET_ARCH: ${{ inputs.target-arch }}
-        TARGET_MAKER: ${{ inputs.target-maker }}
         TARGET_PLATFORM: ${{ inputs.target-platform }}
         WINDOWS_CERT_FILENAME: ${{ inputs.windows-cert-filename }}
         WINDOWS_CERT_PASSWORD: ${{ inputs.windows-cert-password }}
