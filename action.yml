@@ -38,6 +38,8 @@ inputs:
 runs:
   using: composite
   steps:
+    - name: Go to the correct directory
+      run: cd ${{github.action_path}}
     - name: Install platform dependencies
       shell: bash
       run: $GITHUB_ACTION_PATH/scripts/platform-dependencies.sh
