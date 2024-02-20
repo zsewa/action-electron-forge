@@ -43,6 +43,8 @@ runs:
       run: $GITHUB_ACTION_PATH/scripts/platform-dependencies.sh
       env:
         TARGET_MAKER: ${{ inputs.target-maker }}
+    - name: list files
+      run: ls -la
     - name: Install dependencies
       shell: bash
       run: npm install
