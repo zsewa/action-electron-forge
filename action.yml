@@ -1,4 +1,7 @@
 inputs:
+  folder:
+    default: '.'
+    required: false
   macos-cert-importer:
     description: 'Path to script used to import the macOS P12 certificate used to sign the app.'
     default: '$GITHUB_ACTION_PATH/scripts/import-macos-cert.sh'
@@ -38,8 +41,8 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Go to the correct directory
-      run: cd ${{github.action_path}}
+    - name: cd
+      run: cd ${{ inputs.folder }}
     - name: Install platform dependencies
       shell: bash
       run: $GITHUB_ACTION_PATH/scripts/platform-dependencies.sh
