@@ -43,7 +43,9 @@ runs:
       run: $GITHUB_ACTION_PATH/scripts/platform-dependencies.sh
       env:
         TARGET_MAKER: ${{ inputs.target-maker }}
-    - run: npm ci
+    - name: Install dependencies
+      shell: bash
+      run: npm ci
     # - name: Set up macOS signing certificate
     #   shell: bash
     #   run: ${{ inputs.macos-cert-importer }}
