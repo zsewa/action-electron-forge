@@ -43,23 +43,19 @@ runs:
       run: $GITHUB_ACTION_PATH/scripts/platform-dependencies.sh
       env:
         TARGET_MAKER: ${{ inputs.target-maker }}
-    - name: Install Node.js dependencies
-      shell: bash
-      run: $GITHUB_ACTION_PATH/scripts/install.sh
-      env:
-        NODE_INSTALLER: ${{ inputs.node-installer }}
-    - name: Set up macOS signing certificate
-      shell: bash
-      run: ${{ inputs.macos-cert-importer }}
-      env:
-        MACOS_CERT_PASSWORD: ${{ inputs.macos-cert-password }}
-        MACOS_CERT_P12: ${{ inputs.macos-cert-p12 }}
-    - name: Set up Windows signing certificate
-      shell: bash
-      run: ${{ inputs.windows-cert-importer }}
-      env:
-        WINDOWS_CERT_FILENAME: ${{ inputs.windows-cert-filename }}
-        WINDOWS_CERT_P12: ${{ inputs.windows-cert-p12 }}
+    - run: npm ci
+    # - name: Set up macOS signing certificate
+    #   shell: bash
+    #   run: ${{ inputs.macos-cert-importer }}
+    #   env:
+    #     MACOS_CERT_PASSWORD: ${{ inputs.macos-cert-password }}
+    #     MACOS_CERT_P12: ${{ inputs.macos-cert-p12 }}
+    # - name: Set up Windows signing certificate
+    #   shell: bash
+    #   run: ${{ inputs.windows-cert-importer }}
+    #   env:
+    #     WINDOWS_CERT_FILENAME: ${{ inputs.windows-cert-filename }}
+    #     WINDOWS_CERT_P12: ${{ inputs.windows-cert-p12 }}
     - name: Publish app
       shell: bash
       run: $GITHUB_ACTION_PATH/scripts/publish.sh
