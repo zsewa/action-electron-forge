@@ -64,7 +64,7 @@ runs:
       shell: bash
       run: $GITHUB_ACTION_PATH/scripts/publish.sh
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ github.token }}
         NODE_INSTALLER: ${{ inputs.node-installer }}
         TARGET_PLATFORM: ${{ inputs.target-platform }}
         WINDOWS_CERT_FILENAME: ${{ inputs.windows-cert-filename }}
