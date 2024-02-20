@@ -41,18 +41,16 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: cd
-      run: cd ${{ inputs.folder }}
     - name: Install platform dependencies
       shell: bash
       run: $GITHUB_ACTION_PATH/scripts/platform-dependencies.sh
       env:
         TARGET_MAKER: ${{ inputs.target-maker }}
     - name: list files
-      run: ls -la
+      run: cd ${{ inputs.folder }} && ls -la
     - name: Install dependencies
       shell: bash
-      run: npm install
+      run: cd ${{ inputs.folder }} && npm ci
     # - name: Set up macOS signing certificate
     #   shell: bash
     #   run: ${{ inputs.macos-cert-importer }}
@@ -67,7 +65,7 @@ runs:
     #     WINDOWS_CERT_P12: ${{ inputs.windows-cert-p12 }}
     - name: Publish app
       shell: bash
-      run: $GITHUB_ACTION_PATH/scripts/publish.sh
+      run: cd ${{ inputs.folder }} && $GITHUB_ACTION_PATH/scripts/publish.sh
       env:
         GITHUB_TOKEN: ${{ github.token }}
         NODE_INSTALLER: ${{ inputs.node-installer }}
