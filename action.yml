@@ -48,7 +48,7 @@ runs:
         TARGET_MAKER: ${{ inputs.target-maker }}
     - name: Install dependencies
       shell: bash
-      run: cd ${{ inputs.folder }} && npm ci
+      run: cd ${{ inputs.folder }} && $GITHUB_ACTION_PATH/scripts/install.sh
     # - name: Set up macOS signing certificate
     #   shell: bash
     #   run: ${{ inputs.macos-cert-importer }}
